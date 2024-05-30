@@ -367,6 +367,7 @@ def admin():
     return render_template('admin.html')
 
 if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
     logging.basicConfig(level=logging.DEBUG)
     app.secret_key = 'supersecretkey'
-    app.run(debug=True)
+    
