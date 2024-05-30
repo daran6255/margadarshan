@@ -16,8 +16,8 @@ load_dotenv(override=True)
 
 EMAIL_DOMAIN = 'smtp.ipage.com'
 EMAIL_PORT = '587'
-EMAIL_ADDRESS = 'test@winvinayafoundation.org'
-EMAIL_PASSWORD = 'Admin123'
+EMAIL_ADDRESS = 'margadarshan@winvinayafoundation.org'
+EMAIL_PASSWORD = 'Margadarshan123'
 
 # MySQL Configuration
 dbconfig = {
