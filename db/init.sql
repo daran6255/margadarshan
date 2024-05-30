@@ -33,22 +33,14 @@ CREATE TABLE IF NOT EXISTS Candidates (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-SELECT * FROM CandidatesProfile;
-
-
--- events.db
--- Create the events table
 CREATE TABLE events (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     title TEXT NOT NULL,
     date TEXT NOT NULL,
     location TEXT NOT NULL
 );
-
--- Create the event_schedule table
 CREATE TABLE event_schedule (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     event_id INTEGER NOT NULL,
     start_time TEXT NOT NULL,
     end_time TEXT NOT NULL,
