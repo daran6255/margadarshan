@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WVF || Student Profiles</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="static/index_styles.css">
+    
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+            <img src="static/img/Margadarsan_logo_2-.png" alt="logo" width="250px" height="60px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Admin Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Banner Section -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">Welcome to Candidates Profiles</h1>
+            <p class="lead">Look out for suitable candidates profiles below.</p>
+        </div>
+    </div>
+
+   <!-- Filter Form -->
+<!-- Filter Form -->
+<div class="container mb-4 filter-con">
+    <div class="d-flex justify-content-center">
+        <form method="GET" action="{{ url_for('index') }}">
+            <div class="form-row align-items-center">
+                <div class="form-group col-md- col-sm-12">
+                    <label class="bolder-font" for="search">Search</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search by name...">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3 col-sm-12">
+                    <label class="bolder-font" for="category">Category</label>
+                    <select class="form-control" id="category" name="category" required>
+                        <option value="all">All</option>
+                        <option value="PWD">PWD</option>
+                        <option value="Non-PWD">Non-PWD</option>
+                        <option value="EWS">EWS</option>
+                        <option value="Women">Women</option>
+                        <option value="LGBTQ">LGBTQ</option>
+                        <option value="Retired person">Retired person</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3 col-sm-12">
+                    <label class="bolder-font" for="disability">Disability</label>
+                    <select class="form-control" id="disability" name="disability">
+                        <option value="all">All</option>
+                        <option value="Blindness">Blindness</option>
+                        <option value="Low-vision">Low-vision</option>
+                        <option value="Leprosy Cured persons">Leprosy Cured persons</option>
+                        <option value="Hearing Impairment">Hearing Impairment</option>
+                        <option value="Locomotor Disability">Locomotor Disability</option>
+                        <option value="Dwarfism">Dwarfism</option>
+                        <option value="Intellectual Disability">Intellectual Disability</option>
+                        <option value="Mental Illness">Mental Illness</option>
+                        <option value="Autism Spectrum Disorder">Autism Spectrum Disorder</option>
+                        <option value="Cerebral Palsy">Cerebral Palsy</option>
+                        <option value="Muscular Dystrophy">Muscular Dystrophy</option>
+                        <option value="Chronic Neurological conditions">Chronic Neurological conditions</option>
+                        <option value="Specific Learning Disabilities">Specific Learning Disabilities</option>
+                        <option value="Multiple Sclerosis">Multiple Sclerosis</option>
+                        <option value="Speech and Language disability">Speech and Language disability</option>
+                        <option value="Thalassemia">Thalassemia</option>
+                        <option value="Hemophilia">Hemophilia</option>
+                        <option value="Sickle Cell disease">Sickle Cell disease</option>
+                        <option value="Multiple Disabilities">Multiple Disabilities</option>
+                        <option value="Acid Attack survivor">Acid Attack Survivor</option>
+                        <option value="Parkinson's disease">Parkinson's disease</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3 col-sm-12">
+                    <label class="bolder-font" for="domain">Domain</label>
+                    <select class="form-control" id="domain" name="domain">
+                        <option value="all">All</option>
+                        <option value="IT">IT</option>
+                        <option value="BFSI">BFSI</option>
+                        <option value="MS Office">MS Office</option>
+                        <option value="Data Visualization">Data Visualization</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3 col-sm-12">
+                    <label class="bolder-font" for="experience">Experience</label>
+                    <select class="form-control" id="experience" name="experience" required>
+                        <option value="all">All</option>
+                        <option value="0-1">0-1 year</option>
+                        <option value="1-3">1-3 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="5+">5+ years</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row text-center">
+                <div class="col-12">
+                    <button class="btn btn-success" type="submit">Filter</button>
+                    <button class="btn btn-danger" type="button" id="resetBtn">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <!-- Student Profile Section -->
+    <div class="container">
+        <div class="row">
+            {% for student in students %}
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="card">
+                    <div class="student-card">
+                        <img src="static/uploads/image/{{ student[17] }}" class="card-img-top" alt="Student Photo">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ student[1] }}</h5>
+                            
+                            <p class="card-text">Qualification: {{ student[9] }}</p>
+                            <p class="card-text">Domain: {{ student[12] }}</p>
+                            <p class="card-text">Experience: {{ student[16] }}</p>
+                            <p class="card-text">
+                                <a href="#" onclick="loadStudentDetails('{{ student[1] }}', '{{ student[2] }}', '{{ student[3] }}', '{{ student[4] }}', '{{ student[5] }}', '{{ student[6] }}', '{{ student[7] }}', '{{ student[8] }}', '{{ student[9] }}', '{{ student[10] }}', '{{ student[11] }}', '{{ student[12] }}', '{{ student[13] }}', '{{ student[14] }}', '{{ student[15] }}', '{{ student[16] }}', '{{ student[17] }}', '{{ student[18] }}')" data-toggle="modal" data-target="#exampleModal">More info...</a>
+                            </p>
+                            <p class="card-text">
+                                <a href="#" data-resume="{{ student[18] }}" onclick="downloadResume('{{ student[18] }}')"><i class="fa-thin fa-download"></i> Resume</a>
+                            </p>
+                        </div>
+                    </div>
+                    <p style="font-weight: bold;" class="card-text text-wrap">Category: <span style="color: green;"> {{ student[6] }}</span></p>
+                    <p style="font-weight: bold;" class="card-text text-wrap">Disability: <span style="color: green;"> {{ student[7] }}</span></p>
+                    <div class="btn-container">
+                        <button class="btn btn-primary btn-watch-video" data-video-url="{{ student[19] }}"><i class="fas fa-play"></i> Watch Video</button>
+                        <button class="btn btn-success" data-resume="{{ student[18] }}" onclick="downloadResume('{{ student[20] }}')"><i class="fas fa-download"></i>Profile</button>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Candidate Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="student-details">
+                        <!-- Dynamic details will be loaded here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal for Video -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Watch Video</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Embed the YouTube video using an iframe -->
+                <iframe id="videoIframe" width="470" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to open the YouTube video modal with the given video URL
+    function openVideoModal(videoUrl) {
+        // Set the src attribute of the iframe to the video URL
+        document.getElementById('videoIframe').src = "/static/uploads/video/" + videoUrl;
+        // Open the video modal
+        $('#videoModal').modal('show');
+    }
+
+    // Add event listeners to all Watch Video buttons
+    var watchVideoButtons = document.querySelectorAll('.btn-watch-video');
+    watchVideoButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Get the YouTube video URL from the dataset attribute
+            var videoUrl = this.dataset.videoUrl;
+            // Open the YouTube video modal with the specified video URL
+            openVideoModal(videoUrl);
+        });
+    });
+</script>
+
+    <script>
+        function loadStudentDetails(name, age, gender, phone, email, category, disability, percentage, qualification, department, graduation_year, domain, skills, typing_speed, quality, experience, youtube_link, photo, resume) {
+            var details = `
+                <table class="table-bordered p-5">
+                    <tr><th>Name</th><td>${name}</td></tr>
+                    <tr><th>Category</th><td>${category}</td></tr>
+                    <tr><th>Disability</th><td>${disability}</td></tr>
+                    <tr><th>Percentage</th><td>${percentage} %</td></tr>
+                    <tr><th>Qualification</th><td>${qualification}</td></tr>
+                    <tr><th>Branch</th><td>${department}</td></tr>
+                    <tr><th>Graduation Year</th><td>${graduation_year}</td></tr>
+                    <tr><th>Domain</th><td>${domain}</td></tr>
+                    <tr><th>Skills</th><td>${skills}</td></tr>
+                    <tr><th>Typing Speed </th><td>${typing_speed} WPM</td></tr>
+                    <tr><th>Quality</th><td>${quality} %</td></tr>
+                    <tr><th>Experience</th><td>${experience}</td></tr>
+                    <tr><th>Age</th><td>${age}</td></tr>
+                    <tr><th>Gender</th><td>${gender}</td></tr>
+                    <tr><th>Mobile</th><td>${phone}</td></tr>
+                    <tr><th>Email</th><td>${email}</td></tr>
+                </table>
+            `;
+            document.getElementById('student-details').innerHTML = details;
+            downloadResume(resume);
+        }
+
+        function downloadResume(filename) {
+            console.log('Downloading resume:', filename);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/download_resume/' + filename, true);
+            xhr.responseType = 'blob';
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var url = window.URL.createObjectURL(xhr.response);
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    console.log('Resume downloaded successfully:', filename);
+                } else {
+                    console.error('Resume download failed:', xhr.status);
+                }
+            };
+
+            xhr.send();
+        }
+        function downloadPdf(filename) {
+            console.log('Downloading pdf:', pdffilename);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/download_pdf/' + filename, true);
+            xhr.responseType = 'blob';
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var url = window.URL.createObjectURL(xhr.response);
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    console.log('Resume downloaded successfully:', filename);
+                } else {
+                    console.error('Resume download failed:', xhr.status);
+                }
+            };
+
+            xhr.send();
+        }
+        // Function to open the YouTube page in a new tab
+
+        // Add event listeners to all Watch Video buttons
+        var watchVideoButtons = document.querySelectorAll('.btn-watch-video');
+        watchVideoButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the YouTube video URL from the dataset attribute
+                var videoUrl = this.dataset.videoUrl;
+                // Open the YouTube page in a new tab
+                openYouTubePage(videoUrl);
+            });
+        });
+        // Function to clear all filter options
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('category').value = 'all';
+            document.getElementById('disability').value = 'all';
+            document.getElementById('domain').value = 'all';
+            document.getElementById('experience').value = 'all';
+            
+            // Reload the page to clear the filter results
+            window.location.href = "{{ url_for('index') }}";
+        })
+    // Function to handle input event on the search input field
+    document.getElementById('search').addEventListener('input', function() {
+        // Get the value of the search input field
+        var searchQuery = this.value.trim();
+        
+        // Make an AJAX request to the server to fetch filtered results
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/search?query=' + encodeURIComponent(searchQuery), true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Update the content of the student profiles container with the fetched results
+                document.getElementById('student-profiles-container').innerHTML = xhr.responseText;
+            } else {
+                console.error('Failed to fetch search results:', xhr.status);
+            }
+        };
+        xhr.send();
+    });
+
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy; 2024 WinVinaya InfoSystems | All rights reserved</span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* styles.css or inside <style> tag in the HTML */
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+/* ------------------------------------------- */
+.navbar {
+    background-color: #000000;
+}
+
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar .nav-link:hover, .navbar .navbar-brand:hover {
+    color: #bbbbbb;
+}
+.nav-tabs .nav-link.active {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.nav-tabs .nav-link {
+    color: #ffffff;
+}
+
+
+.btn-primary {
+    background-color: #007bff;
+    /* border-color: #007bff; */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    /* border-color: #004085; */
+}
+/* ---------------------------------------- */
+
+.banner {
+    background-color: #000000;
+    color: #ffffff;
+}
+/* ---------------------------------------0 */
+.about-section, .section-title {
+    color: #ffffff;
+}
+
+
+
+.footer {
+    background-color: #000000;
+    padding: 10px 0;
+    text-align: center;
+    color: #6c757d;
+    margin-top: 20px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+.section-description {
+    color: #bbbbbb;
+}
+
+.form-control {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+.form-control:focus {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border-color: #007bff;
+}
+
+.contact p, .contact h5 {
+    color: #ffffff;
+}
+
+.contact iframe {
+    border: 1px solid #444444;
+}
+
+
+/* Banner Styles */
+.banner h1 {
+    /* color: #f7dc62; */
+    font-weight: lighter;
+    align-items: center;
+    font-family:"Raleway";
+    text-align: center;
+    padding-bottom: 10px;
+}
+.banner h2{
+    padding-top: 10px;
+    text-align: center;
+    font-family:"Raleway";
+    font-size: 18px;
+    line-height: 5px;
+}
+.banner h2 span{
+    color: #f82249;
+    font-size: 20px;
+    line-height: 40px;
+}
+.banner h3{
+    text-align: center;
+    font-family:"Raleway";
+    font-size: 33px;
+}
+.banner h3 span{
+    color: #f82249;
+    font-size: 40px;
+}
+.banner p {
+    font-size: 1rem;
+    margin-bottom: 0;
+    font-weight: lighter;
+    align-items: center;
+    text-align: center;
+    font-family:"Raleway";
+}
+
+/* About Us Section Styles */
+.about-section {
+    background-color: #f8f9fa;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-section .section-title {
+    color: #007bff;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    color: #555; /* Text color */
+}
+/* About Us Section Styles */
+/* Upcoming jobmela Section Styles */
+.section-title {
+    margin-bottom: 50px;
+    color: #007bff;
+}
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+}
+.card-title {
+    color: #007bff;
+}
+.card-text small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d;
+}
+.icon {
+    margin-right: 8px;
+    
+}
+.cal-ico{
+    color: #009620;
+}
+.loc-ico{
+    color: #5d0606;
+}
+/* Upcoming jobmela Section Styles */
+
+.student-card {
+    display: flex;
+    flex-direction: row;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 8px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.student-card img {
+    border-radius: 50%;
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+}
+.card-text {
+    line-height: 0.5;
+    text-indent: 15px;
+    font-size: 15px;
+}
+.card {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 5px;
+}
+/* footer Section Styles */

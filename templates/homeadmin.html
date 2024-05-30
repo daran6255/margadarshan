@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WVF || Student Profiles</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="static/homeadmin_styles.css"> 
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+            <img src="static/img/Margadarsan_logo_2-.png" alt="logo" width="250px" height="60px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('admin') }}">Add Candidate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+    <!-- Filter Form -->
+    <div class="container mb-4 filter-con">
+        <div class="d-flex justify-content-center">
+            <form id="searchForm">
+                <div class="form-row align-items-center">
+                    <div class="form-group col-md- col-sm-12">
+                        <!-- <label class="bolder-font" for="search">Search</label> -->
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search by name...">
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit">Search</button>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-danger" type="button" id="resetBtn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student Profile Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Category</th>
+                            <th>Disability</th>
+                            <th>Domain</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td><img src="static/uploads/image/{{ student[17] }}" class="img-fluid rounded-circle" alt="Student Photo" width="40"></td>
+                            <td>{{ student[1] }}</td>
+                            <td>{{ student[5] }}</td>
+                            <td>{{ student[6] }}</td>
+                            <td>{{ student[7] }}</td>
+                            <td>{{ student[12] }}</td>
+                            <td><button class="btn btn-success" onclick="loadStudentDetails('{{ student[0] }}', '{{ student[1] }}', '{{ student[2] }}', '{{ student[3] }}', '{{ student[4] }}', '{{ student[5] }}', '{{ student[6] }}', '{{ student[7] }}', '{{ student[8] }}', '{{ student[9] }}', '{{ student[10] }}', '{{ student[11] }}', '{{ student[12] }}', '{{ student[13] }}', '{{ student[14] }}', '{{ student[15] }}', '{{ student[16] }}', '{{ student[17] }}', '{{ student[18] }}', '{{ student[19] }}', '{{ student[20] }}' )" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <ul class="pagination justify-content-center" id="pagination">
+            <!-- Pagination links will be dynamically generated here -->
+        </ul>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Candidate Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="updateForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="candidateId" name="id">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="text" class="form-control" id="age" name="age">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <input type="text" class="form-control" id="gender" name="gender">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <input type="text" class="form-control" id="category" name="category">
+                        </div>
+                        <div class="form-group">
+                            <label for="disability">Disability</label>
+                            <input type="text" class="form-control" id="disability" name="disability">
+                        </div>
+                        <div class="form-group">
+                            <label for="percentage">Percentage</label>
+                            <input type="text" class="form-control" id="percentage" name="percentage">
+                        </div>
+                        <div class="form-group">
+                            <label for="qualification">Qualification</label>
+                            <input type="text" class="form-control" id="qualification" name="qualification">
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <input type="text" class="form-control" id="department" name="department">
+                        </div>
+                        <div class="form-group">
+                            <label for="graduation_year">Graduation Year</label>
+                            <input type="text" class="form-control" id="graduation-year" name="graduation-year">
+                        </div>
+                        <div class="form-group">
+                            <label for="domain">Domain</label>
+                            <input type="text" class="form-control" id="domain" name="domain">
+                        </div>
+                        <div class="form-group">
+                            <label for="skills">Skills</label>
+                            <input type="text" class="form-control" id="skills" name="skills">
+                        </div>
+                        <div class="form-group">
+                            <label for="typing_speed">Typing Speed</label>
+                            <input type="text" class="form-control" id="typing-speed" name="typing-speed">
+                        </div>
+                        <div class="form-group">
+                            <label for="quality">Quality</label>
+                            <input type="text" class="form-control" id="quality" name="quality">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experience</label>
+                            <input type="text" class="form-control" id="experience" name="experience">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 WVF. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function loadStudentDetails(id, name, age, gender, phone, email, category, disability, percentage, qualification, department, graduation_year, domain, skills, typing_speed, quality, experience, photo) {
+            document.getElementById('candidateId').value = id;
+            document.getElementById('name').value = name;
+            document.getElementById('age').value = age;
+            document.getElementById('gender').value = gender;
+            document.getElementById('phone').value = phone;
+            document.getElementById('email').value = email;
+            document.getElementById('category').value = category;
+            document.getElementById('disability').value = disability;
+            document.getElementById('percentage').value = percentage;
+            document.getElementById('qualification').value = qualification;
+            document.getElementById('department').value = department;
+            document.getElementById('graduation-year').value = graduation_year;
+            document.getElementById('domain').value = domain;
+            document.getElementById('skills').value = skills;
+            document.getElementById('typing-speed').value = typing_speed;
+            document.getElementById('quality').value = quality;
+            document.getElementById('experience').value = experience;
+            document.getElementById('photo').value = photo;
+        }
+
+        $(document).ready(function() {
+            $('#updateForm').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url_for("update_candidate") }}',
+                    data: $('#updateForm').serialize(),
+                    success: function(response) {
+                        $('#exampleModal').modal('hide');
+                        alert('Candidate details updated successfully!');
+                        location.reload(); // Refresh the page to show the updated data
+                    },
+                    error: function() {
+                        alert('Error updating candidate details.');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        searchProfiles();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+        document.getElementById('searchInput').value = ''; // Clear the search input field
+        searchProfiles(); // Show all student profiles
+    });
+
+    function searchProfiles() {
+        var searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+        var studentRows = document.querySelectorAll('tbody tr');
+
+        studentRows.forEach(function(row) {
+            var studentName = row.querySelector('td:nth-child(2)').innerText.trim().toLowerCase();
+            if (studentName.includes(searchQuery)) {
+                row.style.display = 'table-row'; // Show the row
+            } else {
+                row.style.display = 'none'; // Hide the row
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+            // Initialize pagination
+            var tableRows = document.querySelectorAll('tbody tr');
+            var rowsPerPage = 10;
+            var currentPage = 1;
+            var totalPages = Math.ceil(tableRows.length / rowsPerPage);
+
+            // Display initial page
+            showPage(currentPage);
+
+            // Generate pagination links
+            var pagination = document.getElementById('pagination');
+            for (var i = 1; i <= totalPages; i++) {
+                var li = document.createElement('li');
+                var link = document.createElement('a');
+                link.href = '#';
+                link.textContent = i;
+                link.onclick = function() {
+                    currentPage = parseInt(this.textContent);
+                    showPage(currentPage);
+                };
+                li.appendChild(link);
+                pagination.appendChild(li);
+            }
+
+            // Function to display rows for a specific page
+            function showPage(page) {
+                var startIndex = (page - 1) * rowsPerPage;
+                var endIndex = startIndex + rowsPerPage;
+
+                tableRows.forEach(function(row, index) {
+                    if (index >= startIndex && index < endIndex) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-3">Add Candidate</h2>
+        <form method="POST" enctype="multipart/form-data" id="admin-form">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" id="age" name="age" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category" name="category" required>
+                        <option value=""></option>
+                        <option value="PWD">PWD</option>
+                        <option value="Non-PWD">Non-PWD</option>
+                        <option value="EWS">EWS</option>
+                        <option value="Women">Women</option>
+                        <option value="LGBTQ">LGBTQ</option>
+                        <option value="Retired person">Retired person</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row" id="disability-fields" style="display:none;">
+                <div class="form-group col-md-4">
+                    <label for="disability">Disability Type</label>
+                    <select class="form-control" id="disability" name="disability">
+                        <option value=""></option>
+                        <option value="Blindness">Blindness</option>
+                        <option value="Low-vision">Low-vision</option>
+                        <option value="Leprosy Cured persons">Leprosy Cured persons</option>
+                        <option value="Hearing Impairment">Hearing Impairment</option>
+                        <option value="Locomotor Disability">Locomotor Disability</option>
+                        <option value="Dwarfism">Dwarfism</option>
+                        <option value="Intellectual Disability">Intellectual Disability</option>
+                        <option value="Mental Illness">Mental Illness</option>
+                        <option value="Autism Spectrum Disorder">Autism Spectrum Disorder</option>
+                        <option value="Cerebral Palsy">Cerebral Palsy</option>
+                        <option value="Muscular Dystrophy">Muscular Dystrophy</option>
+                        <option value="Chronic Neurological conditions">Chronic Neurological conditions</option>
+                        <option value="Specific Learning Disabilities">Specific Learning Disabilities</option>
+                        <option value="Multiple Sclerosis">Multiple Sclerosis</option>
+                        <option value="Speech and Language disability">Speech and Language disability</option>
+                        <option value="Thalassemia">Thalassemia</option>
+                        <option value="Hemophilia">Hemophilia</option>
+                        <option value="Sickle Cell disease">Sickle Cell disease</option>
+                        <option value="Multiple Disabilities">Multiple Disabilities</option>
+                        <option value="Acid Attack survivor">Acid Attack Survivor</option>
+                        <option value="Parkinson's disease">Parkinson's disease</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="percentage">Disability Percentage</label>
+                    <input type="number" class="form-control" id="percentage" name="percentage">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="qualification">Highest Qualification</label>
+                    <select class="form-control" id="qualification" name="qualification" required>
+                        <option value="12th">12th</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="B.A">B.A</option>
+                        <option value="M.A">M.A</option>
+                        <option value="B.Sc">B.Sc</option>
+                        <option value="M.Sc">M.Sc</option>
+                        <option value="B.Com">B.Com</option>
+                        <option value="M.Com">M.Com</option>
+                        <option value="B.E">B.E</option>
+                        <option value="M.E">M.E</option>
+                        <option value="BBA">BBA</option>
+                        <option value="MBA">MBA</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" name="department" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="graduation-year">Year of Graduation</label>
+                    <input type="text" class="form-control" id="graduation-year" name="graduation-year" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="domain">Domain</label>
+                    <select class="form-control" id="domain" name="domain" required>
+                        <option value="IT">IT</option>
+                        <option value="BFSI">BFSI</option>
+                        <option value="MS Office">MS Office</option>
+                        <option value="Data Visualization">Data Visualization</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="skills">Skills:</label>
+                    <input type="text" class="form-control" id="skills" name="skills" required>
+                </div>
+            </div>
+        
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="typing-speed">Typing Speed (wpm)</label>
+                    <input type="number" class="form-control" id="typing-speed" name="typing-speed">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="quality">Quality (%)</label>
+                    <input type="number" class="form-control" id="quality" name="quality">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="experience">Experience</label>
+                    <select class="form-control" id="experience" name="experience" required>
+                        <option value="0-1 years">0-1 year</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="3-5 years">3-5 years</option>
+                        <option value="5+ years">5+ years</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="photo">Photo</label>
+                    <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="pdf">PDF (Max 20MB)</label>
+                    <input type="file" class="form-control-file" id="pdf" name="pdf" accept="pdf/*" >
+                    <small class="form-text text-muted">Please upload a video file not exceeding 20MB.</small>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="resume">Resume</label>
+                    <input type="file" class="form-control-file" id="resume" name="resume" accept=".pdf,.doc,.docx" >
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="video">Video (Max 20MB)</label>
+                    <input type="file" class="form-control-file" id="video" name="video" accept="video/*" >
+                    <small class="form-text text-muted">Please upload a video file not exceeding 20MB.</small>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#category').change(function() {
+                if ($(this).val() == 'PWD') {
+                    $('#disability-fields').show();
+                    $('#disability').attr('required', true);
+                    $('#percentage').attr('required', true);
+                } else {
+                    $('#disability-fields').hide();
+                    $('#disability').attr('required', false);
+                    $('#percentage').attr('required', false);
+                }
+            });
+
+            $('#admin-form').on('submit', function(e) {
+                var fileInput = $('#video')[0];
+                if (fileInput.files.length > 0) {
+                    var fileSize = fileInput.files[0].size / 1024 / 1024; // size in MB
+                    if (fileSize > 20) {
+                        alert('The video file size must be less than 20MB.');
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
