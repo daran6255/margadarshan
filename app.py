@@ -45,7 +45,7 @@ def login_required(f):
 def search():
     search_query = request.args.get('query', '').strip()
 
-    query = "SELECT * FROM Candidates WHERE name LIKE %s"
+    query = "SELECT * FROM candidates WHERE name LIKE %s"
     cnx = cnxpool.get_connection()
     try:
         cur = cnx.cursor()
@@ -186,7 +186,7 @@ def index():
     experience = request.args.get('experience', 'all')
     search = request.args.get('search', '')
 
-    query = "SELECT * FROM Candidates WHERE 1=1"
+    query = "SELECT * FROM candidates WHERE 1=1"
     params = {}
 
     if category and category != 'all':
@@ -260,7 +260,7 @@ def home_admin():
     cnx = cnxpool.get_connection()
     try:
         cur = cnx.cursor()
-        cur.execute("SELECT * FROM Candidates")
+        cur.execute("SELECT * FROM candidates")
         students = cur.fetchall()
     finally:
         cur.close()
@@ -355,7 +355,7 @@ def admin():
         try:
             cur = cnx.cursor()
             cur.execute("""
-                INSERT INTO Candidates (name, age, gender, phone, email, category, disability_type, disability_percentage, highest_qualification, department, graduation_year, domain, skills, typing_speed, quality, experience, photo, pdf, resume, video)
+                INSERT INTO candidates (name, age, gender, phone, email, category, disability_type, disability_percentage, highest_qualification, department, graduation_year, domain, skills, typing_speed, quality, experience, photo, pdf, resume, video)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (name, age, gender, phone, email, category, disability, disability_percentage, qualification, department, graduation_year, domain, skills, typing_speed, quality, experience, photo.filename, pdf.filename, resume.filename, video.filename))
             cnx.commit()

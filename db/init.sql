@@ -1,13 +1,13 @@
 CREATE USER 'wvf_candidates_profile' @'localhost' IDENTIFIED BY 'wvf@sp123&';
-CREATE DATABASE IF NOT EXISTS CandidatesProfile;
+CREATE DATABASE IF NOT EXISTS candidates_profile;
 
-GRANT ALL PRIVILEGES ON CandidatesProfile.* TO 'wvf_candidates_profile' @'localhost';
+GRANT ALL PRIVILEGES ON candidates_profile.* TO 'wvf_candidates_profile' @'localhost';
 
 FLUSH PRIVILEGES;
 
-USE CandidatesProfile;
+USE candidates_profile;
 
-CREATE TABLE IF NOT EXISTS Candidates (
+CREATE TABLE IF NOT EXISTS candidates (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     age INT NOT NULL,
