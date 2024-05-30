@@ -1,7 +1,7 @@
 CREATE USER 'wvf_candidates_profile' @'localhost' IDENTIFIED BY 'wvf@sp123&';
 CREATE DATABASE IF NOT EXISTS CandidatesProfile;
 
-GRANT ALL PRIVILEGES ON CandidatesProfile.* TO 'wvf_candidates_profile'@'localhost';
+GRANT ALL PRIVILEGES ON CandidatesProfile.* TO 'wvf_candidates_profile' @'localhost';
 
 FLUSH PRIVILEGES;
 
