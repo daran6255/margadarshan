@@ -90,7 +90,7 @@ def get_students_profile():
     cnx = cnxpool.get_connection()
     try:
         cur = cnx.cursor()
-        cur.execute('SELECT * FROM Candidates')
+        cur.execute('SELECT * FROM candidates')
         students = cur.fetchall()
     finally:
         cur.close()
